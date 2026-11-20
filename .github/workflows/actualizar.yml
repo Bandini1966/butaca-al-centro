@@ -15,9 +15,11 @@ jobs:
           python-version: '3.12'
       - name: Descargar publicaciones
         run: python actualizar.py
+      - name: Ocultar aviso técnico al público
+        run: python ocultar_aviso.py
       - name: Guardar novedades
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add novedades.json
+          git add novedades.json index.html
           git diff --cached --quiet || (git commit -m "Actualizar publicaciones Blogger" && git push)
